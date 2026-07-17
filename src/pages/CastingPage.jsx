@@ -1,12 +1,7 @@
 import { useState } from 'react'
-import {
-  FiActivity,
-  FiDollarSign,
-  FiPackage,
-  FiPlus,
-  FiTrendingUp,
-} from 'react-icons/fi'
+import { FiPlus } from 'react-icons/fi'
 import { GiFoundryBucket, GiMetalBar } from 'react-icons/gi'
+import CastingSummary from '../components/CastingSummary'
 import { useCasting } from '../hooks/useCasting'
 import { getTodayDate, moneyFormat, numberFormat } from '../utils/formatters'
 
@@ -180,11 +175,11 @@ function CastingPage() {
             </div>
           </div>
 
-          <div className="mal-stock-total casting-panel-total">
-            <FiPackage />
-            <span>Total Mal Added</span>
-            <strong>{numberFormat.format(totals.totalMal)} kg</strong>
-          </div>
+          <CastingSummary
+            className="casting-summary"
+            totals={totals}
+            wide
+          />
         </section>
       )}
 
@@ -330,46 +325,11 @@ function CastingPage() {
             </div>
           </div>
 
-          <section className="mal-card mal-card--summary casting-summary">
-            <div className="summary-grid summary-grid--wide">
-              <div className="summary-item">
-                <FiPackage />
-                <span>Mal</span>
-                <strong>{numberFormat.format(totals.totalMal)} kg</strong>
-              </div>
-              <div className="summary-item">
-                <FiDollarSign />
-                <span>Kadi Sell</span>
-                <strong>Rs {moneyFormat.format(totals.kadiSell)}</strong>
-              </div>
-              <div className="summary-item">
-                <FiDollarSign />
-                <span>Lokhand Sell</span>
-                <strong>Rs {moneyFormat.format(totals.lokhandSell)}</strong>
-              </div>
-              <div
-                className={`summary-item ${
-                  totals.remainingMal < 0 ? 'summary-item--warning' : ''
-                }`}
-              >
-                <FiActivity />
-                <span>Remaining Mal</span>
-                <strong>{numberFormat.format(totals.remainingMal)} kg</strong>
-                <small>
-                  {numberFormat.format(totals.totalMal)} kg -{' '}
-                  {numberFormat.format(totals.usedMal)} kg
-                </small>
-              </div>
-            </div>
-
-            <div className="income-total">
-              <div>
-                <span>Total Income</span>
-                <strong>Rs {moneyFormat.format(totals.totalIncome)}</strong>
-              </div>
-              <FiTrendingUp />
-            </div>
-          </section>
+          <CastingSummary
+            className="casting-summary"
+            totals={totals}
+            wide
+          />
         </section>
       )}
     </>

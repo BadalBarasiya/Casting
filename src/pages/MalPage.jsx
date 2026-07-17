@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { FiPackage } from 'react-icons/fi'
 import { GiFoundryBucket } from 'react-icons/gi'
+import CastingSummary from '../components/CastingSummary'
 import { useCasting } from '../hooks/useCasting'
 import { getTodayDate, numberFormat } from '../utils/formatters'
 
@@ -31,7 +32,7 @@ function MalPage() {
         <p>Add total Mal in kilograms before converting it into Kadi and Lokhand.</p>
       </section>
 
-      <section className="mal-workspace mal-workspace--single">
+      <section className="mal-workspace">
         <div className="mal-card mal-card--form">
           <div className="mal-card__header">
             <div>
@@ -100,6 +101,8 @@ function MalPage() {
             </div>
           </form>
         </div>
+
+        <CastingSummary totals={totals} />
       </section>
     </>
   )

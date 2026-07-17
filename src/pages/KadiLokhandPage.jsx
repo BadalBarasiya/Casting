@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { FiActivity, FiDollarSign, FiPackage, FiTrendingUp } from 'react-icons/fi'
 import { GiFoundryBucket, GiMetalBar } from 'react-icons/gi'
+import CastingSummary from '../components/CastingSummary'
 import { useCasting } from '../hooks/useCasting'
 import { getTodayDate, moneyFormat, numberFormat } from '../utils/formatters'
 
@@ -176,48 +176,7 @@ function KadiLokhandPage() {
           </form>
         </div>
 
-        <div className="mal-card mal-card--summary">
-          <div className="summary-grid">
-            <div className="summary-item">
-              <FiPackage />
-              <span>Mal</span>
-              <strong>{numberFormat.format(totals.totalMal)} kg</strong>
-            </div>
-            <div className="summary-item">
-              <FiDollarSign />
-              <span>Kadi Sell</span>
-              <strong>Rs {moneyFormat.format(totals.kadiSell)}</strong>
-              <small>From saved Kadi entries</small>
-            </div>
-            <div className="summary-item">
-              <FiDollarSign />
-              <span>Lokhand Sell</span>
-              <strong>Rs {moneyFormat.format(totals.lokhandSell)}</strong>
-              <small>From saved Lokhand entries</small>
-            </div>
-            <div
-              className={`summary-item ${
-                totals.remainingMal < 0 ? 'summary-item--warning' : ''
-              }`}
-            >
-              <FiActivity />
-              <span>Remaining Mal</span>
-              <strong>{numberFormat.format(totals.remainingMal)} kg</strong>
-              <small>
-                {numberFormat.format(totals.totalMal)} kg -{' '}
-                {numberFormat.format(totals.usedMal)} kg
-              </small>
-            </div>
-          </div>
-
-          <div className="income-total">
-            <div>
-              <span>Total Income</span>
-              <strong>Rs {moneyFormat.format(totals.totalIncome)}</strong>
-            </div>
-            <FiTrendingUp />
-          </div>
-        </div>
+        <CastingSummary totals={totals} />
       </section>
     </>
   )
